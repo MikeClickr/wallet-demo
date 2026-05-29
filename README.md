@@ -1,73 +1,41 @@
-# React + TypeScript + Vite
+# ID Wallet Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Een demo-website waar bezoekers kunnen ervaren hoe **5 digitale identiteits-wallets** werken in **5 alledaagse scenario's**. De UI gebruikt het officiële [Amsterdam Design System](https://designsystem.amsterdam/).
 
-Currently, two official plugins are available:
+## 🔗 Live demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**https://mikeclickr.github.io/wallet-demo/**
 
-## React Compiler
+> Frontend-demo: Yivi draait in dummy-modus, er is geen echte backend/issuer. De identiteits-flows zijn gesimuleerd.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Wallets en scenario's
 
-## Expanding the ESLint configuration
+**5 wallets:** NL Wallet (overheid), Yivi (privacy-by-design), Digidentity (commercieel), Datakeeper (nieuw), Schluss (coöperatief)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**5 scenario's:**
+1. Leeftijdscheck (18+)
+2. Inloggen bij de gemeente (Mijn Amsterdam)
+3. Adres delen (pakketbezorging)
+4. Diploma delen (DUO / sollicitatie)
+5. Jaarinkomen tonen (Belastingdienst / huurwoning)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **React + TypeScript + Vite**
+- **[Amsterdam Design System](https://designsystem.amsterdam/)** — `@amsterdam/design-system-react`, `-css`, `-tokens`, `-assets`
+- **[Yivi](https://yivi.app/)** — `@privacybydesign/yivi-*` (frontend, dummy-modus)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Lokaal draaien
+
+```bash
+npm install
+npm run dev        # dev-server met HMR
+npm run build      # productie-build naar dist/
+npm run preview    # bekijk de productie-build lokaal
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Deployment
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Elke push naar `main` bouwt en publiceert automatisch naar GitHub Pages via
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). De Vite `base`
+staat op `/wallet-demo/` zodat assets onder het GitHub Pages-subpad laden.
