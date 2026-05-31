@@ -19,11 +19,17 @@ export function ScenarioGrid({ wallet, onStart }: Props) {
         </Paragraph>
       </Grid.Cell>
 
-      {SCENARIOS.map((scenario) => (
-        <Grid.Cell key={scenario.id} span={{ narrow: 4, medium: 4, wide: 4 }}>
-          <ScenarioCard scenario={scenario} onStart={() => onStart(scenario.id)} />
-        </Grid.Cell>
-      ))}
+      <Grid.Cell span="all">
+        <div className="wd-card-grid">
+          {SCENARIOS.map((scenario) => (
+            <ScenarioCard
+              key={scenario.id}
+              scenario={scenario}
+              onStart={() => onStart(scenario.id)}
+            />
+          ))}
+        </div>
+      </Grid.Cell>
     </Grid>
   )
 }
