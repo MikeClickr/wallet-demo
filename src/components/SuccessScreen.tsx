@@ -1,4 +1,6 @@
-import { Button, Heading, Paragraph } from '@amsterdam/design-system-react'
+import { Fragment } from 'react'
+import { Button, DescriptionList, Heading, Paragraph } from '@amsterdam/design-system-react'
+import { CheckMarkIcon } from '@amsterdam/design-system-react-icons'
 import type { Wallet } from '../data/wallets'
 import type { Scenario } from '../data/scenarios'
 
@@ -12,20 +14,21 @@ export function SuccessScreen({ wallet, scenario, onClose }: Props) {
   return (
     <div className="wd-flow wd-flow--centered">
       <span className="wd-check" aria-hidden="true">
-        ✓
+        <CheckMarkIcon />
       </span>
       <Heading level={3}>Gelukt!</Heading>
       <Paragraph>
         Je hebt met <strong>{wallet.name}</strong> gedeeld met {scenario.requester}.
       </Paragraph>
 
-      <ul className="wd-shared">
+      <DescriptionList className="wd-shared">
         {scenario.attributes.map((attr) => (
-          <li key={attr.label}>
-            <strong>{attr.label}:</strong> {attr.value}
-          </li>
+          <Fragment key={attr.label}>
+            <DescriptionList.Term>{attr.label}</DescriptionList.Term>
+            <DescriptionList.Description>{attr.value}</DescriptionList.Description>
+          </Fragment>
         ))}
-      </ul>
+      </DescriptionList>
 
       <Paragraph size="small" className="wd-muted">
         Alleen deze gegevens zijn gedeeld — niets meer.
